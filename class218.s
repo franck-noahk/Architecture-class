@@ -5,7 +5,7 @@
 
 _start:
     mov r7, #4
-    mov r0, #1,
+    mov r0, #1
     mov r2, #22
     LDR r1, =prompt
     swi 0
@@ -15,4 +15,4 @@ end:
     swi 0
 
 .data
-prompt: "Please enter a String:"
+prompt: .ascii "Please enter a String:"
