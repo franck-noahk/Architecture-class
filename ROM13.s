@@ -9,21 +9,36 @@ _start:				@start should print the prompt
 	mov r0, #1
 	mov r2, #22
 	ldr r1, =prompt
-	swi 0			@I am currently getting an error on 
-					@section of code it works for Willi's 
-					@but not mine
+	swi 0
 read:
 	mov r7, #3
 	mov r0, #0
 	mov r2, #255
 	ldr r1, =string
 	swi 0
+	mov r4, #0		@index
+	mov r5, #100	@value for 'l'
+	mov r6, #122	@value for 'z'
+					
+loop:
+	cmp r4, #255	@checks if loop = 255
+	BEQ write
+	ldrb r8, [r1, r4]
+	cmp r8, r5 		@comparing element to l
+	blt add13 
+	sub r8, r8, #13
+
+add13:
+	add r8, r8, #13
+
+store:
+
+
 end:
 	mov r7, #1
 	swi 0
 .data
 prompt: .ascii "Please enter a String:"
 string: .space 256
-
 
 
