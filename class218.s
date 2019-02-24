@@ -16,6 +16,12 @@ read:
     mov r2, #255
     ldr r1, =string
     swi 0 
+    mov r4, #0                  @index for array
+    mov r5, #97                 @Ascii for 'a'
+    mov r6, #122                @Ascii for 'z'
+
+loop:
+    cmp
 
 write:
     mov r7, #4
@@ -23,8 +29,6 @@ write:
     mov r2, #255
     ldr r1, =string
     swi 0
-
-
 
 end:
     mov r7, #1
