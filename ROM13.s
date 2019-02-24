@@ -15,8 +15,11 @@ _start:				@start should print the prompt
 read:
 	mov r7, #3
 	mov r0, #0
-	mov r2, #256
+	mov r2, #255
 	ldr r1, =string
+	swi 0
+end:
+	mov r7, #1
 	swi 0
 .data
 prompt: .ascii "Please enter a String:"
