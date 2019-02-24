@@ -25,11 +25,16 @@ loop:
 	BEQ write
 	ldrb r8, [r1, r4]
 	cmp r8, r5 		@comparing element to l
-	blt add13 
+	blt add13		@if element is less than l add 13 to it 
 	sub r8, r8, #13
+	blt increaseIndex	@reguardless of what happens need to increast the loop
 
 add13:
 	add r8, r8, #13
+
+increaseIndex:
+	add r4, r4, #1
+	blt loop		@returns to the start of the loop
 
 store:
 
