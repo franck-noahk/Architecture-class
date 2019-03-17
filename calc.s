@@ -24,7 +24,7 @@ read:						@read in the value
 prompt2:
 	mov r7, #4
 	mov r0, #1
-	mov r2, #54
+	mov r2, #53
 	ldr r1, =promptOpperand
 	swi 0
 readOpperand:
@@ -33,25 +33,28 @@ readOpperand:
 	mov r2, #1
 	ldr r1, =opp;			
 	swi 0	
-	@mov r0, #1
-	@mov r2, #3
-	
-	cmp r1, #49
-	BEQ addition
-	cmp r1, #50
-	beq subtraction
-	cmp r1, #51
-	beq multiplication
-	cmp r1, #52
-	beq division
-	b end
-
-	
-
 write:
 	mov r7, #4
 	mov r0, #1
 	mov r2, #3
+	
+	mov r5, #1 	@comparison opperaotr
+
+	cmp r1, r5
+	BEQ addition
+	add r5, r5, #1
+	cmp r1, r5
+	beq subtraction
+	add r5, r5, #1
+	cmp r1, r5
+	beq multiplication
+	add r5, r5, #1
+	cmp r1, r5
+	beq division
+	add r5, r5, #1
+	b addition
+
+	
 	
 addition:
 	ldr r1, =addmsg
