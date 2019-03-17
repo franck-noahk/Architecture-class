@@ -16,12 +16,12 @@ read:
 	SWI 0
 	MOV R4, #0	 @counter
 	MOV R5, #0	 @array index
-	MOV R9, =newstring
+	ldr R9, =newstring
 
 counter:
 	LDRB R8, [R1, R4] 
 	CMP R8, #0
-	BEQ write 
+	BEQ loop 
 
 increment:
 	ADD R4, R4, #1
@@ -38,7 +38,7 @@ loop:
 	SUB R6, R6, #1
 	CMP R6, #0
 	BEQ write
-	loop
+	b loop
 
 write:
 	MOV R7, #4

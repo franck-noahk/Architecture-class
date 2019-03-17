@@ -8,18 +8,18 @@
 .global _start
 
 
-_start:
+_start:						@main goal is get user to give me a number 
 	mov r7, #4
 	mov r0, #1
 	mov r2, #34
 	ldr r1, =promptnumber
 	swi 0
 
-read:
+read:						@read in the value	
 	mov r7, #3
 	mov r0, #0
 	mov r2, #1
-	str r1, num1;
+	str r1, num1;			@having issues with getting it to work Maybe switching back to ldr & add swi 0?
 
 prompt2:
 	mov r7, #4
