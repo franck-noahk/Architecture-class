@@ -1,4 +1,4 @@
-@Goal: Create a program that accepts a string from a user
+@flagsGoal: Create a program that accepts a string from a user
 @Goal: Reverse the string of and give it back to the user by the command line
 
 .global _start
