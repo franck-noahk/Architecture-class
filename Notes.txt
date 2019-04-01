@@ -18,7 +18,7 @@ April 1st:
                 0000 0101   (+5)
                 1111 1010
                 1111 1011   (-5)
-
+        Pg 170. commands for padding issues 
 
 
 
