@@ -1,0 +1,24 @@
+April 1st:
+
+    number systems:
+        Normal Binary:
+            the number system uses 
+        2's Compliment:
+            pg 159. Steps to convert number from 2's Compliment into Binary
+            STEPS:
+                1. Write positive number in Binary
+                2. invert all bits
+                3. Add 1
+            ex:
+                0000 0001   (+1) - step 1 write posititive number or given number
+                1111 1110        - flipped every bit
+                1111 1111   (-1) - adding 1 to it 
+
+            ex 2: Convert 5 to 2's complicant
+                0000 0101   (+5)
+                1111 1010
+                1111 1011   (-5)
+
+
+
+
