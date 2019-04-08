@@ -4,9 +4,9 @@
     greetings: .asciz "Hello, World!"
 .text
 
-.global _start
+.global main
 
-_start:
+main:
     ldr r0, greeting
     str lr, [r1]
 
