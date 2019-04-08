@@ -1,7 +1,9 @@
-@Program to test function calls
+//Program to test function calls
 
 .data
     greetings: .asciz "Hello, World!"
+    return : .word 0    //returning in c to make it happy
+    .balign 4
 .text
 
 .global main
