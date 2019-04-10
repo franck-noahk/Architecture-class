@@ -43,7 +43,8 @@ main:
 
     mov r1, r0                  //getting ready for next printf
 
-    ldr r0, address_of_num1
+    ldr r0, address_of_format_output     // loading r0 with address for printf
+    //-----------------multiply function call endend -----------------------
     bl printf
 
     ldr r1, address_of_return   //make r1 a pointer to return
