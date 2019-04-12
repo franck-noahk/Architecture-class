@@ -10,9 +10,9 @@
 	.balign 4 
 	num2: .word 0
     .balign 4
-    format_output: .ascii "%d\n"
+    format_output: .asciz "%d\n"
     .balign 4
-    format_string: .ascii "%d"
+    format_string: .asciz "%d"
 .text
 
 multiply5: 
@@ -27,7 +27,7 @@ multiply5:
 
 main:
 
-    ldr r0, address_of_return   //loads address of load value
+    ldr r1, address_of_return   //loads address of load value
     str lr, [r1]                //store current link address into r1
     ldr r0, address_of_greeting //make r0 pointer to greeting
     BL printf
@@ -45,9 +45,6 @@ main:
     ldr r1, address_of_return   //make r1 a pointer to return
     ldr lr, [r1]                //store value of r1 into r1
     bx lr
-	mov r7, #1
-	swi 0
-
 
 address_of_return: .word return
 address_of_greeting: .word greeting
@@ -55,5 +52,6 @@ address_of_num1: .word num1
 address_of_num2: .word num2
 address_of_format_string: .word format_string
 address_of_format_output: .word format_output
+
 
 .global puts
