@@ -32,6 +32,21 @@ joke:
 	ldr r0, address_of_funny1
 	bl printf
 	b end
+serious:
+	ldr r0, address_of_prompt2
+	bl printf
+	ldr r0, address_of_input_string
+	ldr r1, address_of_dog_years
+	bl scanf
+
+	ldr r0, address_of_dog_years
+	ldr r1, [r0]
+	mov r4, #7
+	mul r0, r1, r4
+	mov r1, r0
+	ldr r0, address_of_final_answer
+	bl printf
+
 main:
 
 prompting_user:
@@ -50,22 +65,6 @@ prompting_user:
 	beq joke
 	cmp r0, #0
 	beq serious
-
-serious:
-	ldr r0, address_of_prompt2
-	bl printf
-	ldr r0, address_of_input_string
-	ldr r1, address_of_dog_years
-	bl scanf
-
-	ldr r0, address_of_dog_years
-	ldr r1, [r0]
-	mov r4, #7
-	mul r0, r1, r4
-	mov r1, r0
-	ldr r0, address_of_final_answer
-	bl printf
-
 end:
 	ldr r1, address_of_return
 	ldr lr, [r1]
