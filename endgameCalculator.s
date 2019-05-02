@@ -15,7 +15,17 @@
 main: 
 	ldr r1, addressOfReturn
 	str lr, [r1]
-	
+promptUser:
+
+add:
+
+subtract:
+
+multiply:
+
+divide:
+
+printFinalResult:
 
 
 end:
