@@ -1,4 +1,4 @@
-.globval main
+.global main
 .data
 	.balign 4
 	promptNum1: .asciz “Please enter some number that you want to work with”
