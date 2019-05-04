@@ -14,7 +14,7 @@
 .text
 main: 
 	ldr r1, addressOfReturn
-	str lr, [r1]
+	str lr, [r11]
 promptUser:
 
 add:
@@ -29,9 +29,9 @@ printFinalResult:
 
 
 end:
-	ldr r1, addressOfReturn
-	ldr lr, [r1]
-	by lr
+	ldr r11, addressOfReturn
+	ldr lr, [r11]
+	bx lr
 
 addressOfPromptNum1: .word promptNum1
 addressOfInputNum1String: .word inputNum1String
