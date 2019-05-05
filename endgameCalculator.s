@@ -1,15 +1,18 @@
 .data
 	.balign 4
-	promptNum1: .asciz “Please enter some number that you want to work with”
+	promptNum1: .asciz "Please enter some number that you want to work with"
 	.balign 4
-	inputNum1String: .asciz “%d”
+	inputNum1String: .asciz "%d"
 	.balign 4
-	outputString: .asciz “Your answer is %d”
+	outputString: .asciz "Your answer is %d"
 	.balign 4
 	return: .word 0
 	.balign 4
-	signPrompt: .word “What do you want the numbers to do?\n 1)add \n 2)subtract\n 3)multiply\n 4)divide”
+	signPrompt: .asciz "What do you want the numbers to do?\n 1)add \n 2)subtract\n 3)multiply\n 4)divide"
+
+.balign 2
 .text
+
 .global main
 main: 
 	ldr r11, addressOfReturn
