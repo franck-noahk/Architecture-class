@@ -1,0 +1,19 @@
+DUE FRIDAY MAY 10, 2019 BEFORE CLASS
+
+Write a calculator in assembly for the Raspberry Pi.
+
+It has to be able to take in two operands up to word (32-bit) size and an instruction then perform the requested instruction on the 2 operands.  
+
+It MUST support addition, subtraction, multiplication, and division.  (Update: for division, you MUST implement the division by subtraction algorithm discussed in chapter 4 of the book.)
+
+It MUST support positive and negative 32-bit numbers for the two operands.
+
+It MUST inform the user if there is an overflow or carry condition after the operation.  You are not required to show the correct result if there is an overflow or carry.  It is better to show an error message and no answer than to show the incorrect answer. (Here's the bonus part: If you can make it show the correct answer to all four operations for all 32-bit positive and negative inputs including carry and overflow conditions, then you get a 1 letter grade bonus onto your final course grade)
+
+It MUST list any limitations (like maximum input) in the prompts to the user.
+
+You may collect the inputs from the user however you wish.  You can collect it as one string and then parse it.  You may ask for each operand and the instruction separately.  You may do something else entirely. Your prompts just have to be clear as to what you are expecting the user to do.
+
+It MUST print out the result to the console.
+
+The only external functions you may call are gets, puts, printf, and scanf.  All other functions called must be in the code you have written.
