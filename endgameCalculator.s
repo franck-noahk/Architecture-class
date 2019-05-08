@@ -23,6 +23,13 @@
 main: 
 	ldr r11, addressOfReturn
 	str lr, [r11]
+
+
+
+	//at end of promptUser, the registers will hold
+	//r5, first number entered
+	//r6, second number entered
+	//r7, the number of the sign answer
 promptUser:	
 	ldr r0, addressOfPromptNum1
 	bx printf
@@ -32,9 +39,16 @@ promptUser:
 	ldr r0, addressOfSignPrompt
 	bx printf
 	ldr r0, addressOfPromptNum1
-	ldr r0, signAnswer
+	ldr r1, addressOfSignAnswer
 	bx scanf
-			
+	ldr r5, addressOfAnswer
+	ldr r0, addressOfInputNum1String
+	bx printf
+	ldr r0, addressOfInputNum1String
+	ldr r1, addressOfAnswer
+	bx scanf
+	ldr r6, addressOfAnswer
+	ldr r7, addressOfSignAnswer
 add:
 
 subtract:
@@ -57,7 +71,7 @@ addressOfOutputString: .word outputString
 addressOfReturn: .word return
 addressOfAnswer: .word answer
 addressOfSignPrompt: .word signPrompt
-
+addressOfSignAnswer: .word signAnswer
 
 
 
