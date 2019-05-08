@@ -31,7 +31,10 @@ promptUser:
 	bx scanf
 	ldr r0, addressOfSignPrompt
 	bx printf
-	ldr r0,  
+	ldr r0, addressOfPromptNum1
+	ldr r0, signAnswer
+	bx scanf
+			
 add:
 
 subtract:
