@@ -7,7 +7,7 @@
 	.balign 4
 	inputNum1String: .asciz "%d"
 	.balign 4
-	outputString: .asciz "Your answer is %d"
+	outputString: .asciz "Your answer is %d\n"
 	.balign 4
 	return: .word 0
 	.balign 4
@@ -51,9 +51,9 @@ promptUser:
 	bl scanf
 	ldr r7, addressOfSignAnswer
 	ldr r7, [r7]
-	ldr r0, addressOfInputNum1String
+	ldr r0, addressOfPromptNum1
 	bl printf
-	ldr r0, addressOfInputNum2String
+	ldr r0, addressOfInputNum1String
 	ldr r1, addressOfAnswer2
 	bl scanf
 	ldr r6, addressOfAnswer2
@@ -71,7 +71,7 @@ decision:
 	b errorMessage
 
 add:
-	adds r2, r5, r6
+	adds r1, r5, r6
 	bcs overflowMessage		//branches if cary flag is set
 	b printFinalResult
 
@@ -94,8 +94,8 @@ overflowMessage:
 	bl printf
 	b end
 printFinalResult:
-	ldr r1, addressOfOutputString
-	
+	ldr r0, addressOfOutputString
+	bl printf	
 end:
 	ldr r11, addressOfReturn
 	ldr lr, [r11]
