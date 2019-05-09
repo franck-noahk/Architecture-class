@@ -63,10 +63,11 @@ decision:
 	b multiply
 	cmp r7, #4
 	b divide
-	b error
+	b errorMessage
 
 add:
-	
+	adds r2, r5, r6
+
 	b printFinalResult
 
 subtract:
@@ -78,12 +79,12 @@ multiply:
 divide:
 	b printFinalResult
 
-error: 
+errorMessage: 
 	ldr r1, addressOfError
 	bx printf
 	b end
 
-overflow: 
+overflowMessage: 
 	ldr r1, addressOfOverflow
 	bx printf
 	b end
