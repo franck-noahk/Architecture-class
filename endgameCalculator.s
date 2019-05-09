@@ -5,7 +5,7 @@
 	.balign 4
 	promptNum1: .asciz "Please enter some number that you want to work with\n"
 	.balign 4
-	inputNum1String: .asciz "%d\n"
+	inputNum1String: .asciz "%d"
 	.balign 4
 	outputString: .asciz "Your answer is %d"
 	.balign 4
@@ -20,6 +20,8 @@
 	errorString: .asciz "Error recieved in input s given.\n"
 	.balign 4
 	overflow: .asciz "Congragulations, you broke the matrix with an overflow, or more commonly known:\nSegmentation Fault\n"
+	.balign 4
+	inputNum2Answer: .word 0
 .balign 2
 .text
 
@@ -48,7 +50,7 @@ promptUser:
 	ldr r5, addressOfAnswer
 	ldr r0, addressOfInputNum1String
 	bl printf
-	ldr r0, addressOfInputNum1String
+	ldr r0, addressOfInputNum2String
 	ldr r1, addressOfAnswer
 	bl scanf
 	ldr r6, addressOfAnswer
@@ -106,7 +108,7 @@ addressOfSignPrompt: .word signPrompt
 addressOfSignAnswer: .word signAnswer
 addressOfError: .word errorString
 addressOfOverflow: .word overflow
-
+addressOfInputNum2String: .word inputNum2Answer
 
 
 
