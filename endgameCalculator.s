@@ -71,10 +71,12 @@ decision:
 	b errorMessage
 
 add:
+	mov r4, #0
 	cmp r5, #0
 	ble negative_add
 
 positive_add:
+	mov r4, #1
 	cmp r6, #0
 	ble A_only_1_negative
 	adds r1, r5, r6			//might be getting segmation fault here.
@@ -89,20 +91,31 @@ positive_add:
 	b printFinalResult
 
 negative_add:
-	 cmp r6, #0 
-	 ble A_both_negative
+	cmp r6, #0 
+	ble A_both_negative
+	b A_only_1_negative
 
 A_both_negative:
 	adds r1, r5, r6
 	cmp r1, #0 
 	bge overflowMessage
-	bprintFinalResult
+	b printFinalResult
 
 A_only_1_negative:
-
+	cmp r4, #0	
+	b subtract
+	mov r7, r5
+	mov r5, r6
+	mov r6, r7
+	b subtract
 
 subtract:
+	cmp r4, #10
+	b division_by_subtraction
 	b printFinalResult
+
+division_by_subtraction:
+
 
 multiply:
 	b printFinalResult
