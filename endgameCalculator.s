@@ -49,6 +49,16 @@ promptUser:
 	bx scanf
 	ldr r6, addressOfAnswer
 	ldr r7, addressOfSignAnswer
+decision:
+	cmp r7, #1
+	b add
+	cmp r7, #2
+	b subtract
+	cmp r7, #3
+	b multiply
+	cmp r7, #4
+	b divide
+	b error
 add:
 
 subtract:
@@ -58,7 +68,7 @@ multiply:
 divide:
 
 printFinalResult:
-
+	ldr r1, addressOfErrror
 
 end:
 	ldr r11, addressOfReturn
