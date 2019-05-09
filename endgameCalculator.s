@@ -49,7 +49,7 @@ promptUser:
 	ldr r0, addressOfInputNum1String
 	ldr r1, addressOfSignAnswer
 	bl scanf
-	ldr r7, addressOfSignAnwser
+	ldr r7, addressOfSignAnswer
 	ldr r7, [r7]
 	ldr r0, addressOfInputNum1String
 	bl printf
