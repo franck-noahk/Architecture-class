@@ -19,7 +19,7 @@
 	.balign 4
 	errorString: .asciz "Error recieved in input s given.\n"
 	.balign 4
-	overflow: .asciz "Congragulations, you broke the matrix with an overflow, or more commonly known:\nSegmentation Fault\n"
+	overflow: .asciz "Congragulations, you broke the matrix with an overflow.:\n"
 	.balign 4
 	inputNum2Answer: .word 0
 	.balign 4
@@ -71,8 +71,8 @@ decision:
 	b errorMessage
 
 add:
-	adds r1, r5, r6
-	bcs overflowMessage		//branches if cary flag is set
+	adds r1, r5, r6			//might be getting segmation fault here.
+	bvs overflowMessage		//branches if overflow flag is set
 	b printFinalResult
 
 subtract:
@@ -84,7 +84,7 @@ multiply:
 divide:
 	b printFinalResult
 
-errorMessage: 
+errorMessage:				//getting segmentation fault here 
 	ldr r1, addressOfError
 	bl printf
 	b end
