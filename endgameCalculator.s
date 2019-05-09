@@ -67,7 +67,7 @@ decision:
 
 add:
 	adds r2, r5, r6
-
+	bcs overflowMessage		//branches if cary flag is set
 	b printFinalResult
 
 subtract:
