@@ -71,8 +71,12 @@ decision:
 	b errorMessage
 
 add:
+	cmp r5, #0
+	ble negative_add
 
 positive_add:
+	cmp r6, #0
+	ble A_only_1_negative
 	adds r1, r5, r6			//might be getting segmation fault here.
 	cmp r5, #2147483647
 	bge overflowMessage
@@ -83,10 +87,16 @@ positive_add:
 	bmi overflowMessage
 	//bvs overflowMessage		//branches if overflow flag is set
 	b printFinalResult
+
 negative_add:
+	 cmp r6, #0 
+	 ble A_both_negative
 
 A_both_negative:
-
+	adds r1, r5, r6
+	cmp r1, #0 
+	bge overflowMessage
+	bprintFinalResult
 A_only_1_negative:
 
 
