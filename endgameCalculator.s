@@ -5,7 +5,7 @@
 	.balign 4
 	promptNum1: .asciz "Please enter some number that you want to work with\n"
 	.balign 4
-	inputNum1String: .asciz "%d"
+	inputNum1String: .asciz "%d\n"
 	.balign 4
 	outputString: .asciz "Your answer is %d"
 	.balign 4
@@ -22,6 +22,8 @@
 	overflow: .asciz "Congragulations, you broke the matrix with an overflow, or more commonly known:\nSegmentation Fault\n"
 	.balign 4
 	inputNum2Answer: .word 0
+	.balign 4
+	answer2: .word 0
 .balign 2
 .text
 
@@ -29,8 +31,6 @@
 main: 
 	ldr r11, addressOfReturn
 	str lr, [r11]
-
-
 
 	//at end of promptUser, the registers will hold
 	//r5, first number entered
@@ -42,19 +42,22 @@ promptUser:
 	ldr r0, addressOfInputNum1String
 	ldr r1, addressOfAnswer		
 	bl scanf
+	ldr r5, addressOfAnswer
+	ldr r5, [r5]
 	ldr r0, addressOfSignPrompt
 	bl printf
-	ldr r0, addressOfPromptNum1
+	ldr r0, addressOfInputNum1String
 	ldr r1, addressOfSignAnswer
 	bl scanf
-	ldr r5, addressOfAnswer
+	ldr r7, addressOfSignAnwser
+	ldr r7, [r7]
 	ldr r0, addressOfInputNum1String
 	bl printf
 	ldr r0, addressOfInputNum2String
-	ldr r1, addressOfAnswer
+	ldr r1, addressOfAnswer2
 	bl scanf
-	ldr r6, addressOfAnswer
-	ldr r7, addressOfSignAnswer
+	ldr r6, addressOfAnswer2
+	ldr r6, [r6]
 
 decision:
 	cmp r7, #1
@@ -109,6 +112,6 @@ addressOfSignAnswer: .word signAnswer
 addressOfError: .word errorString
 addressOfOverflow: .word overflow
 addressOfInputNum2String: .word inputNum2Answer
-
+addressOfAnswer2: .word answer2
 
 
