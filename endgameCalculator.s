@@ -18,6 +18,8 @@
 	signAnswer: .word 0
 	.balign 4
 	error: .asciz "Error recieved in input s given.\n"
+	.balign 4
+	overflow: .asciz "Congragulations, you broke the matrix with an overflow, or more commonly known:\nSegmentation Fault"
 .balign 2
 .text
 
@@ -64,6 +66,7 @@ decision:
 	b error
 
 add:
+	
 	b printFinalResult
 
 subtract:
@@ -80,6 +83,10 @@ error:
 	bx printf
 	b end
 
+overflow: 
+	ldr r1, addressOfOverflow
+	bx printf
+	b end
 printFinalResult:
 	ldr r1, addressOfOutputString
 	
@@ -97,7 +104,7 @@ addressOfAnswer: .word answer
 addressOfSignPrompt: .word signPrompt
 addressOfSignAnswer: .word signAnswer
 addressOfError: .word errorString
-
+addressOfOverflow: .word overflow
 
 
 
