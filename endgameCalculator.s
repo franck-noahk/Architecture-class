@@ -14,10 +14,10 @@
 	signPrompt: .asciz "What do you want the numbers to do?\n 1)add \n 2)subtract\n 3)multiply\n 4)divide"
 	.balign 4
 	answer: .word 0
-`	.balign 4 
+	.balign 4 
 	signAnswer: .word 0
 	.balign 4
-	error: .asciz "Error recieved in input s given.\n"
+	errorString: .asciz "Error recieved in input s given.\n"
 	.balign 4
 	overflow: .asciz "Congragulations, you broke the matrix with an overflow, or more commonly known:\nSegmentation Fault"
 .balign 2
@@ -36,21 +36,21 @@ main:
 	//r7, the number of the sign answer
 promptUser:	
 	ldr r0, addressOfPromptNum1
-	bx printf
+	bl printf
 	ldr r0, addressOfInputNum1String
 	ldr r1, addressOfAnswer		
-	bx scanf
+	bl scanf
 	ldr r0, addressOfSignPrompt
-	bx printf
+	bl printf
 	ldr r0, addressOfPromptNum1
 	ldr r1, addressOfSignAnswer
-	bx scanf
+	bl scanf
 	ldr r5, addressOfAnswer
 	ldr r0, addressOfInputNum1String
-	bx printf
+	bl printf
 	ldr r0, addressOfInputNum1String
 	ldr r1, addressOfAnswer
-	bx scanf
+	bl scanf
 	ldr r6, addressOfAnswer
 	ldr r7, addressOfSignAnswer
 
@@ -81,12 +81,12 @@ divide:
 
 errorMessage: 
 	ldr r1, addressOfError
-	bx printf
+	bl printf
 	b end
 
 overflowMessage: 
 	ldr r1, addressOfOverflow
-	bx printf
+	bl printf
 	b end
 printFinalResult:
 	ldr r1, addressOfOutputString
