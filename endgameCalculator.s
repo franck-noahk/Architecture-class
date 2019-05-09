@@ -71,9 +71,24 @@ decision:
 	b errorMessage
 
 add:
+
+positive_add:
 	adds r1, r5, r6			//might be getting segmation fault here.
-	bvs overflowMessage		//branches if overflow flag is set
+	cmp r5, #2147483647
+	bge overflowMessage
+	cmp r6, #2147483647
+	bge overflowMessage
+	cmp r1, #2147483647
+	bge overflowMessage
+	bmi overflowMessage
+	//bvs overflowMessage		//branches if overflow flag is set
 	b printFinalResult
+negative_add:
+
+A_both_negative:
+
+A_only_1_negative:
+
 
 subtract:
 	b printFinalResult
@@ -85,12 +100,12 @@ divide:
 	b printFinalResult
 
 errorMessage:				//getting segmentation fault here 
-	ldr r1, addressOfError
+	ldr r0, addressOfError
 	bl printf
 	b end
 
 overflowMessage: 
-	ldr r1, addressOfOverflow
+	ldr r0, addressOfOverflow
 	bl printf
 	b end
 printFinalResult:
