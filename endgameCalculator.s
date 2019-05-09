@@ -5,7 +5,7 @@
 	.balign 4
 	promptNum1: .asciz "Please enter some number that you want to work with\n"
 	.balign 4
-	inputNum1String: .asciz "%d\n"
+	inputNum1String: .asciz "%d"
 	.balign 4
 	outputString: .asciz "Your answer is %d"
 	.balign 4
