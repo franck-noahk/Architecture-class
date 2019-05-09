@@ -3,15 +3,15 @@
 
 .data
 	.balign 4
-	promptNum1: .asciz "Please enter some number that you want to work with"
+	promptNum1: .asciz "Please enter some number that you want to work with\n"
 	.balign 4
-	inputNum1String: .asciz "%d"
+	inputNum1String: .asciz "%d\n"
 	.balign 4
 	outputString: .asciz "Your answer is %d"
 	.balign 4
 	return: .word 0
 	.balign 4
-	signPrompt: .asciz "What do you want the numbers to do?\n 1)add \n 2)subtract\n 3)multiply\n 4)divide"
+	signPrompt: .asciz "What do you want the numbers to do?\n 1)add \n 2)subtract\n 3)multiply\n 4)divide\n"
 	.balign 4
 	answer: .word 0
 	.balign 4 
@@ -19,7 +19,7 @@
 	.balign 4
 	errorString: .asciz "Error recieved in input s given.\n"
 	.balign 4
-	overflow: .asciz "Congragulations, you broke the matrix with an overflow, or more commonly known:\nSegmentation Fault"
+	overflow: .asciz "Congragulations, you broke the matrix with an overflow, or more commonly known:\nSegmentation Fault\n"
 .balign 2
 .text
 
