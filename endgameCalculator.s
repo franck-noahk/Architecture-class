@@ -16,6 +16,8 @@
 	answer: .word 0
 `	.balign 4 
 	signAnswer: .word 0
+	.balign 4
+	error: .asciz "Error recieved in input s given.\n"
 .balign 2
 .text
 
@@ -49,6 +51,7 @@ promptUser:
 	bx scanf
 	ldr r6, addressOfAnswer
 	ldr r7, addressOfSignAnswer
+
 decision:
 	cmp r7, #1
 	b add
@@ -59,21 +62,32 @@ decision:
 	cmp r7, #4
 	b divide
 	b error
+
 add:
+	b printFinalResult
 
 subtract:
+	b printFinalResult
 
 multiply:
+	b printFinalResult
 
 divide:
+	b printFinalResult
+
+error: 
+	ldr r1, addressOfError
+	bx printf
+	b end
 
 printFinalResult:
-	ldr r1, addressOfErrror
-
+	ldr r1, addressOfOutputString
+	
 end:
 	ldr r11, addressOfReturn
 	ldr lr, [r11]
 	bx lr
+
 //addresses
 addressOfPromptNum1: .word promptNum1
 addressOfInputNum1String: .word inputNum1String
@@ -82,7 +96,7 @@ addressOfReturn: .word return
 addressOfAnswer: .word answer
 addressOfSignPrompt: .word signPrompt
 addressOfSignAnswer: .word signAnswer
-
+addressOfError: .word errorString
 
 
 
