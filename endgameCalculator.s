@@ -133,6 +133,11 @@ subraction_both_pos:
 subtract_r5_neg:
 	cmp r6, #0
 	ble subtract_both_neg
+	//at this point r5 is negative and r6 is positive
+	sub r1, r5, r6
+	cmp r1, #0
+	bge overflowMessage
+	b printFinalResult
 
 subtract_both_neg:
 	
