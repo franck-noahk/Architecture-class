@@ -107,21 +107,39 @@ A_only_1_negative:
 	mov r7, r5
 	mov r5, r6
 	mov r6, r7
-	b subtract
+	add r1, r5, r6				//could be problematic check signs & maybe flip
+	b printFinalResult
 
 subtract:
 	cmp r4, #10
 	b division_by_subtraction
-	b printFinalResult
+	cmp r4, #0
+	b subtract_not_positive
+	cmp r5, #0
+	bge subtract_r5_pos
+	b subtract_r5_neg
 
+subtract_r5_pos:
+	cmp r6, #0
+	bge subtraction_both_pos
+
+subraction_both_pos:
+
+subtract_r5_neg:
+	cmp r6, #0
+	ble subtract_both_neg
+
+subtract_both_neg:
+	
 division_by_subtraction:
-
+	
 
 multiply:
 	b printFinalResult
 
 divide:
-	b printFinalResult
+	mov r4, #10
+	b subtract
 
 errorMessage:				//getting segmentation fault here 
 	ldr r0, addressOfError
