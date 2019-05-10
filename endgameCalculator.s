@@ -155,7 +155,22 @@ subtract_r5_neg:
 	b printFinalResult
 
 subtract_both_neg:
-	
+	cmp r5, r6
+	ble sub_neg_r6
+	bge sub_neg_r5
+
+sub_neg_r6:
+	subs r1, r5, r6
+	cmp r1, #0
+	bge overflowMessage
+	b printFinalResult
+
+sub_neg_r5:
+	subs r1, r5, r6
+	cmp r1, #0 
+	gle overflowMessage
+	b printFinalResult
+
 division_by_subtraction:
 	
 
