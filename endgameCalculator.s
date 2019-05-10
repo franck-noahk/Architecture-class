@@ -190,10 +190,22 @@ multiply_r5_neg:
 	b mul_different
 
 mul_same:
-
+	cmp r5, #46340
+	bge overflowMessage
+	cmp r6, #46340
+	bge overflowMessage
 	smul r1, r5, r6
+	b printFinalResult
 	
 mul_different:
+	cmp r5, #46340
+	bge overflowMessage
+	cmp r6, #46340
+	bge overflowMessage
+	smul r1, r5, r6
+	cmp r1 #0
+	bge overflowMessage	
+	b printFinalResult		
 
 divide:
 	mov r4, #10
