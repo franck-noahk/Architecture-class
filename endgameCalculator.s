@@ -76,6 +76,12 @@ add:
 	b printFinalResult
 
 subtract:
+	subs r1, r5, r6
+	bus overflowMessage
+	blo overflowMessage	
+	cmp r5, #2
+	beq printFinalResult
+	
 
 multiply:
 
