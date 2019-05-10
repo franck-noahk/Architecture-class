@@ -118,13 +118,18 @@ subtract:
 	cmp r5, #0
 	bge subtract_r5_pos
 	b subtract_r5_neg
-
+	
 subtract_r5_pos:
 	cmp r6, #0
-	bge subtraction_both_pos
-
+	bge subtraction_both_pos	
+	//at this point r5 pos r6 neg
+	subs r1, r5, r6
+	cmp r1, #0
+	ble overflowMessage
+	b printFinalResult
+	
 subraction_both_pos:
-
+	
 subtract_r5_neg:
 	cmp r6, #0
 	ble subtract_both_neg
