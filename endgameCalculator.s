@@ -58,43 +58,69 @@ promptUser:
 	bl scanf
 	ldr r6, addressOfAnswer2
 	ldr r6, [r6]
-
+	mov r10, #0
+	mov r3, #-1
 decision:
 	cmp r7, #1
-	b add
+	beq add
 	cmp r7, #2
-	b subtract
+	beq subtract
 	cmp r7, #3
-	b multiply
+	beq multiply
 	cmp r7, #4
-	b divide
+	beq divide
 	b overflowMessage
 
 add:
-	adds r1, r5, r6
+	adds r5, r5, r6
 	bvs overflowMessage
 	b printFinalResult
 
-subtract:
-	subs r1, r5, r6
-	bvs overflowMessage
-	blo overflowMessage	
-	cmp r7, #2
-	beq printFinalResult
-	b printFinalResult	
-
 multiply:
-	smull r1,r4, r5, r6
+	smulls r5,ip, r5, r6
+	cmp ip, r5, asr #31
+	bne overflowMessage
 	bvs overflowMessage	
 	blo overflowMessage
 	b printFinalResult
+
+subtract:
+	subs r5, r5, r6
+	bvs overflowMessage
+	//blo overflowMessage	
+	cmp r7, #2
+	beq printFinalResult
+	add r10, r10, #1
+	cmp r5, r6
+	bge subtract
+	cmp r8, #1
+	smulleq r10, r4, r10, r3
+	mov r5, r10
+	b printFinalResult
+
 divide:
+	cmp r5, #0
+	mov r8, #0
+	bge check_neg_thingggy
+	smull r5,r4, r5, r3
+	add r8, r8, #1
+		
 	
+check_neg_thingggy:
+	cmp r6, #0
+	beq overflowMessage
+	bgt subtract
+	smull r6, r4, r6, r3
+	add r8, r8, #1
+	b subtract
+
 overflowMessage: 
 	ldr r0, addressOfOverflow
 	bl printf
 	b end
+
 printFinalResult:
+	mov r1, r5
 	ldr r0, addressOfOutputString
 	bl printf	
 end:
