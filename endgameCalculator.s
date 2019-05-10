@@ -11,7 +11,7 @@
 	.balign 4
 	return: .word 0
 	.balign 4
-	signPrompt: .asciz "What do you want the numbers to do?\n 1)add \n 2)subtract\n 3)multiply\n 4)divide\n"
+	signPrompt: .asciz "What do you want the numbers to do?\n 1)add \n 2)subtract\n 3)multiply\n 4)divide -- No number bigger than 46340\n"
 	.balign 4
 	answer: .word 0
 	.balign 4 
@@ -175,7 +175,25 @@ division_by_subtraction:
 	
 
 multiply:
-	b printFinalResult
+	cmp r5, #0
+	bge multiply_r5_pos
+	b multiply_r5_neg
+
+multiply_r5_pos:
+	cmp r6, #0
+	bge mul_same
+	b mul_different
+
+multiply_r5_neg:
+	cmp r6, #0
+	ble mul_same
+	b mul_different
+
+mul_same:
+
+	smul r1, r5, r6
+	
+mul_different:
 
 divide:
 	mov r4, #10
