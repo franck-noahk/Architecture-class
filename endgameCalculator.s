@@ -77,16 +77,19 @@ add:
 
 subtract:
 	subs r1, r5, r6
-	bus overflowMessage
+	bvs overflowMessage
 	blo overflowMessage	
-	cmp r5, #2
+	cmp r7, #2
 	beq printFinalResult
-	
+	b printFinalResult	
 
 multiply:
-
+	smull r1,r4, r5, r6
+	bvs overflowMessage	
+	blo overflowMessage
+	b printFinalResult
 divide:
-
+	
 overflowMessage: 
 	ldr r0, addressOfOverflow
 	bl printf
