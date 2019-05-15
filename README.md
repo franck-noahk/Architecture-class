@@ -1,7 +1,7 @@
-# Mobile Device Programming
-## Union University CSC 200
-## Tought by Dr. G. Jan Wilms
-### Resources used [Big Nerd Ranch Android Programming Guide (3rd Edition)](https://www.bignerdranch.com/books/android-programming/)
+# Computer Architecture
+## Union University CSC 270
+## Tought by CS Adjunct Willie George
+### Resources used [Arm Assembly Language Programming & Architecture (second edition)](http://www.microdigitaled.com/ARM/ARM_ASM_books.htm)
 ### Student: Noah Franck
 #### Projects:
 ### 1. [Dog Converter](dogConverter.s)
