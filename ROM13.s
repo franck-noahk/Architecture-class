@@ -17,27 +17,59 @@ read:
 	ldr r1, =string
 	swi 0
 	mov r4, #0		@index
-	mov r5, #100	@value for 'l'
-	mov r6, #122	@value for 'z'
-					
+	mov r5, #65		@value for 'A'
+	mov r6, #90		@value for 'Z'
+	mov r10, #97	@value for 'a'
+	mov r11, #122	@value for 'z'
 loop:
-	cmp r4, #255	@checks if loop = 255
+	cmp r4, #255		@checks if loop = 255
 	BEQ write
 	ldrb r8, [r1, r4]
-	cmp r8, r5 		@comparing element to l
-	blt add13		@if element is less than l add 13 to it 
-	sub r8, r8, #13
-	blt increaseIndex	@reguardless of what happens need to increast the loop
+	cmp r8, r5 		@comparing element to A
+	bge LetterDecision	@If it can be a letter choose what happens	 
+	blt increaseIndex	@If there is no chance of letter skip
+
+LetterDecision: 
+	cmp r8, r6
+	ble UpperLetter
+	cmp r8, r10
+	blt increaseIndex
+	cmp r8, r11
+	ble LittleLetter
+	b increaseIndex
+
+UpperLetter:
+	mov r0, #77
+	cmp r8, r0
+	ble add13
+	bge sub13
+
+LittleLetter:
+	mov r0, #109
+	cmp r8, r0
+	ble add13
+	bge sub13
 
 add13:
 	add r8, r8, #13
+	strb r8, [r1, r4]
+	b increaseIndex
+
+sub13:
+	sub r8, r8, #13
+	strb r8, [r1, r4]
+	b increaseIndex
 
 increaseIndex:
 	add r4, r4, #1
-	blt loop		@returns to the start of the loop
+	b loop		@returns to the start of the loop
 
-store:
-
+write:
+	mov r7, #4
+	mov r0, #1
+	mov r2, #255
+	ldr r1, =string
+	swi 0
 
 end:
 	mov r7, #1
