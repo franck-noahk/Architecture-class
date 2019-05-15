@@ -17,20 +17,40 @@ read:
 	ldr r1, =string
 	swi 0
 	mov r4, #0		@index
-	mov r5, #100	@value for 'l'
-	mov r6, #122	@value for 'z'
-					
+	mov r5, #65		@value for 'A'
+	mov r6, #90		@value for 'Z'
+	mov r10, #97	@value for 'a'
+	mov r11, #122	@value for 'z'
 loop:
-	cmp r4, #255	@checks if loop = 255
+	cmp r4, #255		@checks if loop = 255
 	BEQ write
 	ldrb r8, [r1, r4]
-	cmp r8, r5 		@comparing element to l
-	blt add13		@if element is less than l add 13 to it 
-	sub r8, r8, #13
+	cmp r8, r5 		@comparing element to A
+	bge LetterDecision		@Breaks to skip algorith if lower askii than A 
 	blt increaseIndex	@reguardless of what happens need to increast the loop
+
+letterDecision: 
+	cmp r8, r6
+	ble UpperLetter
+	cmp r8, r10
+	blt increaseIndex
+	cmp r8, r11
+	blt LittleLetter
+	b increaseIndex
+
+UpperLetter:
+	
+	b loop
+
+LittleLetter:
+	
+	b loop
 
 add13:
 	add r8, r8, #13
+
+sub13:
+	sub r8, r8, #13
 
 increaseIndex:
 	add r4, r4, #1
