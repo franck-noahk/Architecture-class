@@ -35,17 +35,17 @@ LetterDecision:
 	cmp r8, r10
 	blt increaseIndex
 	cmp r8, r11
-	blt LittleLetter
+	ble LittleLetter
 	b increaseIndex
 
 UpperLetter:
-	mov r0, #76
+	mov r0, #77
 	cmp r8, r0
 	ble add13
 	bge sub13
 
 LittleLetter:
-	mov r0, #108
+	mov r0, #109
 	cmp r8, r0
 	ble add13
 	bge sub13
