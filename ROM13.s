@@ -1,4 +1,4 @@
-@Goal: create a program that encripts a string given by 
+@Goal: create a program that encripts a string given by
 @the user, and returns it to the command line in ROT13
 
 
@@ -26,25 +26,25 @@ loop:
 	BEQ write
 	ldrb r8, [r1, r4]
 	cmp r8, r5 		@comparing element to A
-	bge LetterDecision	@If it can be a letter choose what happens	 
+	bge LetterDecision	@If it can be a letter choose what happens
 	blt increaseIndex	@If there is no chance of letter skip
 
-LetterDecision: 
+LetterDecision: 		@determins if each character in the array is a letter or not, and how to handle them
 	cmp r8, r6
-	ble UpperLetter
+	ble UpperLetter		@Sends the character because it is an upper case letter
 	cmp r8, r10
-	blt increaseIndex
+	blt increaseIndex	@skip this character in string
 	cmp r8, r11
-	ble LittleLetter
+	ble LittleLetter	@Sends the character because it is a lower case letter
 	b increaseIndex
 
-UpperLetter:
+UpperLetter:				@Figure out if the letter is halfway through the alphabet and depending on what side of the 'M' add or subtract 13 respectively.
 	mov r0, #77
 	cmp r8, r0
 	ble add13
 	bge sub13
 
-LittleLetter:
+LittleLetter:				@Figure out if the letter is halfway through the alphabet and depending on what side of the 'm' add or subtract 13 respectively.
 	mov r0, #109
 	cmp r8, r0
 	ble add13
@@ -60,22 +60,20 @@ sub13:
 	strb r8, [r1, r4]
 	b increaseIndex
 
-increaseIndex:
+increaseIndex:			@This will increase my index for my counter through the string
 	add r4, r4, #1
 	b loop		@returns to the start of the loop
 
-write:
+write:							@Writes out my new string after I have gone trhough all the avalible characters
 	mov r7, #4
 	mov r0, #1
 	mov r2, #255
 	ldr r1, =string
 	swi 0
 
-end:
+end:								@safely exit program
 	mov r7, #1
 	swi 0
 .data
 prompt: .ascii "Please enter a String:"
 string: .space 256
-
-
