@@ -39,12 +39,16 @@ letterDecision:
 	b increaseIndex
 
 UpperLetter:
-	
-	b loop
+	mov r0, #76
+	cmp r8, r0
+	ble add13
+	bge sub13
 
 LittleLetter:
-	
-	b loop
+	mov r0, #76
+	cmp r8, r0
+	ble add13
+	bge sub13
 
 add13:
 	add r8, r8, #13
