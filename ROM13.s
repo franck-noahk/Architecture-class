@@ -26,10 +26,10 @@ loop:
 	BEQ write
 	ldrb r8, [r1, r4]
 	cmp r8, r5 		@comparing element to A
-	bge LetterDecision		@Breaks to skip algorith if lower askii than A 
-	blt increaseIndex	@reguardless of what happens need to increast the loop
+	bge LetterDecision	@If it can be a letter choose what happens	 
+	blt increaseIndex	@If there is no chance of letter skip
 
-letterDecision: 
+LetterDecision: 
 	cmp r8, r6
 	ble UpperLetter
 	cmp r8, r10
@@ -45,23 +45,31 @@ UpperLetter:
 	bge sub13
 
 LittleLetter:
-	mov r0, #76
+	mov r0, #108
 	cmp r8, r0
 	ble add13
 	bge sub13
 
 add13:
 	add r8, r8, #13
+	strb r8, [r1, r4]
+	b increaseIndex
 
 sub13:
 	sub r8, r8, #13
+	strb r8, [r1, r4]
+	b increaseIndex
 
 increaseIndex:
 	add r4, r4, #1
-	blt loop		@returns to the start of the loop
+	b loop		@returns to the start of the loop
 
-store:
-
+write:
+	mov r7, #4
+	mov r0, #1
+	mov r2, #255
+	ldr r1, =string
+	swi 0
 
 end:
 	mov r7, #1
